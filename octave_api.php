@@ -37,52 +37,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
                                    $r = $_GET["input"];
                                    $initAlpha = $_GET["initAlpha"];
+                                   $toTargetNaklonRemained = $_GET["input"];
                                    $initQ = $_GET["initQ"];
                                    $initTheta = $_GET["initTheta"];
-                                   if(intval($initAlpha) >= 0 && intval($initQ) >= 0 && intval($initTheta) >= 0){
+                                   if(floatval($_GET["input"]) >= 0 && floatval($initAlpha) >= 0 && floatval($initQ) >= 0 && floatval($initTheta) >= 0){
                                         $output = shell_exec("octave --no-gui --quiet octave_scripts/airplane.txt $r $initAlpha $initQ $initTheta");
+                                        $output = preg_replace('!\s+!', ' ', $output);
                                         $frontAndEndValues = explode("====KONIEC====", $output);
 
-                                        $frontValues = $frontAndEndValues[0];
-                                        $endValues = $frontAndEndValues[1];
+                                        $frontValues = explode(" ", $frontAndEndValues[0]);
+                                        array_shift($frontValues);
+                                        array_pop($frontValues);
 
-                                        $frontPieces = explode("||", $frontValues);
-                                        for($i =0; $i<count($frontPieces); $i++){
+                                        $endValues = explode(" ", $frontAndEndValues[1]);
+                                        array_shift($endValues);
+                                        array_pop($endValues);
 
-                                             if(strlen($frontPieces[$i]) < 10){
-                                                  break;
-                                             }
-
-                                             $insidePieces = explode("*", $frontPieces[$i]);
+                                        for($i =0; $i<count($frontValues); $i=$i+2){
 
                                              $newFrame = array();
-
-                                             $naklonLietadlaArray = explode(":", $insidePieces[0]);
-                                             array_push($newFrame, ["naklon_lietadla" => $naklonLietadlaArray[1]]);
-
-                                             $naklonZadnejKlapkyArray = explode(":", $insidePieces[1]);
-                                             array_push($newFrame, ["naklon_zadnej_klapky" => $naklonZadnejKlapkyArray[1]]);
-
+                                             array_push($newFrame, ["naklon_lietadla" => $frontValues[$i]]);
+                                             array_push($newFrame, ["naklon_zadnej_klapky" => $frontValues[$i+1]]);
                                              array_push($dataArray, $newFrame);
                                         }
 
-                                        if(strlen($endValues) > 10){
-                                             $endPieces = explode("-", $endValues);
-                                             for($i =0; $i<count($endPieces); $i++){
-                                                  if(strlen($endPieces[$i]) < 10){
-                                                     break; 
-                                                     array_push($errorArray, ["error" => "unexpected result from Octave"]);
-                                                  }
-                                             }
+                                        if(count($endValues) === 6){
 
-                                             $initAlphaArray = explode(":", $endPieces[0]);
-                                             array_push($finalArray, ["initAlpha" => $initAlphaArray[1]]);
+                                             array_push($finalArray, ["initAlpha" => $endValues[1]]);
 
-                                             $initQArray = explode(":", $endPieces[1]);
-                                             array_push($finalArray, ["initQ" => $initQArray[1]]);
+                                             array_push($finalArray, ["initQ" => $endValues[3]]);
 
-                                             $initThetaArray = explode(":", $endPieces[2]);
-                                             array_push($finalArray, ["initQ" => $initThetaArray[1]]);
+                                             array_push($finalArray, ["initTheta" => $endValues[5]]);
 
                                         }
                                         else{

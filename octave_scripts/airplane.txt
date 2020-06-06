@@ -22,8 +22,5 @@ t = 0:0.1:40;
 
 [y,t,x]=lsim(sys,r*ones(size(t)),t,[initAlfa;initQ;initTheta]);
 
-#printf("X1: %f | X2: %f | X3: %f ", x(:,1), x(:,2), x(:,3));
-printf("aktualny_naklon_lietadla:%f*aktualny_naklon_zadnej_klapky:%f||", x(:,3), r*ones(size(t))*N-x*K');
-printf("====KONIEC====");
-printf("initAlpha:%f-initQ:%f-initTheta:%f", x(end,1), x(end,2), x(end,3));
+disp([x(:,3), r*ones(size(t))*N-x*K']),disp("====KONIEC===="),disp("initAlpha:"),disp(x(end,1)),,disp("initQ:"),disp(x(end,2)),,disp("initTheta:"),disp(x(end,3));
 
