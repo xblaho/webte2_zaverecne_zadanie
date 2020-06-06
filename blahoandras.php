@@ -44,8 +44,10 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-12">
-				
+			<div class="col-10 offset-1 col-lg-8 offset-lg-2 div-wrapper d-flex justify-content-center align-items-center">
+				<canvas height="500" width="800" id="animCanvas"></canvas>
+				<img src="images/blahoandras_airplane.png" id="airplane" hidden>
+				<img src="images/blahoandras_airplane_winglet.png" id="airplaneWinglet" hidden>
 			</div>
 		</div>
 		<div class="row">
@@ -66,9 +68,46 @@
   <script>
 
   	$( document ).ready(function() {
-  		var counterForGraph =  0;
 
-  		function extendGraph(naklonLietadla, naklonZadnejKlapky){
+  		// CANVAS (FABRIC) START
+  		var canvas = new fabric.Canvas('animCanvas');
+  		var airplaneElement = document.getElementById('airplane');
+		var airplaneInstance = new fabric.Image(airplaneElement, {
+		  left: 100,
+		  top: 150,
+		  angle: 0,
+		  opacity: 1,
+		});
+		airplaneInstance.scale(0.5);
+		//canvas.add(airplaneInstance);
+
+		var airplaneWingletElement = document.getElementById('airplaneWinglet');
+		var airplaneWingletInstance = new fabric.Image(airplaneWingletElement, {
+		  left: 110,
+		  top: 235,
+		  angle: 0,
+		  opacity: 1,
+		  centeredRotation: true
+		});
+		airplaneWingletInstance.scale(0.5);
+		//canvas.add(airplaneWingletInstance);
+
+
+		var group = new fabric.Group([ airplaneInstance, airplaneWingletInstance ], {
+		});
+		canvas.add(group);
+
+  		function radians_to_degrees(radians)
+		{
+		  var pi = Math.PI;
+		  return radians * (180/pi);
+		}
+
+		//CANVAS FABRIC STOP
+
+		// EXTEND GRAPH AND ANIMATE FUNCTION START
+		var counterForGraph =  0;
+  		function extendGraphAndAnimate(naklonLietadla, naklonZadnejKlapky){
   			Plotly.extendTraces('graf1', {
 				x: [[counterForGraph]],
 				y: [[naklonLietadla]]
@@ -79,31 +118,17 @@
 				y: [[naklonZadnejKlapky]]
 			} , [0]);
 
+			var radToTurnLietadlo = radians_to_degrees(naklonLietadla)*-1;
+			var radToTurnLietadloZadnaKlapka = radians_to_degrees(naklonZadnejKlapky)*-1;
+
+			group.animate('angle', radToTurnLietadlo, { onChange: canvas.renderAll.bind(canvas) });
+			airplaneWingletInstance.animate('angle', radToTurnLietadloZadnaKlapka, { onChange: canvas.renderAll.bind(canvas) });
 			counterForGraph++;
-			console.log("EXTEND");
-			/*for(var j =0; j< jsonOutput.length; j++){
 
-				setTimeout(
-				  function() 
-				  {
-				  		var aktualnyNaklonLietadla = jsonOutput[j][0].naklon_lietadla;
-						var aktualnyNaklonZadnejKlapky = jsonOutput[j][1].naklon_zadnej_klapky;
-
-				        Plotly.extendTraces('graf1', {
-						x: [[counterForGraph]],
-						y: [[aktualnyNaklonLietadla]]
-					} , [0]);
-
-					Plotly.extendTraces('graf2', {
-						x: [[counterForGraph]],
-						y: [[aktualnyNaklonZadnejKlapky]]
-					} , [0]);
-
-					counterForGraph++;
-				 }, 100);
-			}*/
   		}
+  		// EXTEND GRAPH AND ANIMATE FUNCTION STOP
 
+  		// NEW POSITION EVENT START
   		$("#novaPoziciaBtn").click(function(e){
 
   			var input = $("#novaPoziciaInput").val();
@@ -120,11 +145,6 @@
 				   minimumFractionDigits: 0,      
 				   maximumFractionDigits: 6,
 				});
-
-				//console.log(msg[1]);
-				//console.log(formatter.format(parseFloat(msg[1].final[0].initAlpha)));
-				//console.log(formatter.format(parseFloat(msg[1].final[1].initQ)));
-				//console.log(formatter.format(parseFloat(msg[1].final[2].initTheta)));
 
 				var newAlpha = formatter.format(parseFloat(msg[1].final[0].initAlpha));
 				var newQ = formatter.format(parseFloat(msg[1].final[1].initQ));
@@ -147,27 +167,21 @@
 				console.log($("#initQInput").val());
 				console.log($("#initThetaInput").val());
 
-				/*console.log(parseFloat(msg[1].final[0].initAlpha).toFixed(6));
-				console.log(parseFloat(msg[1].final[1].initQ).round(3));
-				$("#initAlphaInput").val(msg[1].final[0].initAlpha);
-				$("#initQInput").val(parseFloat(msg[1].final[1].initQ).toFixed(6));
-				$("#initThetaInput").val(msg[1].final[2].initTheta);*/
-
 				for(var i =0; i< msg[0].data.length; i++){
 					(function(index) {
 	        			setTimeout(function() { 
-	        				//console.log(index);
-	        				//console.log(msg[0].data[index]);
 	        				var aktualnyNaklonLietadla = msg[0].data[index][0].naklon_lietadla;
 							var aktualnyNaklonZadnejKlapky = msg[0].data[index][1].naklon_zadnej_klapky;
-					    	extendGraph(aktualnyNaklonLietadla,aktualnyNaklonZadnejKlapky);
-	        			}, index*1);
+					    	extendGraphAndAnimate(aktualnyNaklonLietadla,aktualnyNaklonZadnejKlapky);
+	        			}, index*100);
     				})(i,msg);
 				}
 			}
 			});
   		});
+  		// NEW POSITION EVENT STOP
 
+  		// INIT PLOTLY GRAPH START
   		var layoutGraf1 = {
 		  title:'Graf1Title'
 		};
@@ -195,6 +209,7 @@
 
 		Plotly.newPlot('graf1', dataGraf1, layoutGraf1);
 		Plotly.newPlot('graf2', dataGraf2, layoutGraf2);
+		// INIT PLOTLY GRAPH STOP
 
 	});
 

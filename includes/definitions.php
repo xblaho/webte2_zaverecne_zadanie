@@ -14,6 +14,7 @@ echo '
 	<link rel="stylesheet" href="./css/main.css">
 	<link rel="stylesheet" href="./css/footer.css">
 	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+	<script src="js/fabric.min.js"></script>
 ';
 
 ?>
