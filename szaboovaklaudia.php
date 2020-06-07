@@ -223,7 +223,7 @@
 				type: 'POST',
 				url: 'logindividualtaskuse.php',
 				data:{
-					name: "Tlmič auta"
+					name: "Tlmic auta"
 				},
 				success: function(msg){
 				}
