@@ -63,6 +63,8 @@ $lang["apidescription_main_h1_text"] = 'Popis API';
 //*****************************************
 
 $lang["octavecommands_main_h1_text"] = 'Octave príkazy';
+$lang["octavecommands_input_text"] = 'Zadajte príkaz';
+$lang["octavecommands_btn_text"] = 'Vypočítaj!';
 
 //*****************************************
 //STATISTICS.PHP

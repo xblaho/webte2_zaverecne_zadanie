@@ -29,12 +29,12 @@
 				<form class="form" method="POST" action="octave_api.php?apikey=ABC&type=vlastny">
 					<div class="form-row">
 						<div class="col-md-6">
-							<label for="input">Zadajte príkaz</label>
+							<label for="input"><?php echo $lang["octavecommands_input_text"] ?></label>
 							<input type="text" name="input" class="form-control" id="mainInput">
 						</div>
 						<div class="col-md-6">
 							<label style="opacity:0;">Btn</label>
-							<button type="button" class="btn btn-primary btn-block" id="calculate">Vypočítaj!</button>
+							<button type="button" class="btn btn-primary btn-block" id="calculate"><?php echo $lang["octavecommands_btn_text"]; ?></button>
 						</div>
 					</div>
 				</form>

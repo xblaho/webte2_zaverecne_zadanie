@@ -63,6 +63,8 @@ $lang["apidescription_main_h1_text"] = 'API description';
 //*****************************************
 
 $lang["octavecommands_main_h1_text"] = 'Octave commands';
+$lang["octavecommands_input_text"] = 'Write a statement';
+$lang["octavecommands_btn_text"] = 'Calculate!';
 
 //*****************************************
 //STATISTICS.PHP

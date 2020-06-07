@@ -1,6 +1,7 @@
 <?php
 
 header("Content-Type:application/json");
+include 'includes/conn.php';
 
 $api_key = "ABC";
 $resultArray = array(); // POZASTAVA Z DATA + ERROR + FINAL array 
@@ -52,6 +53,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 						array_push($finalArray, ["initX1d" => number_format(round(floatvaL($splittedLast[3]),6),5,'.',',')]);
 						array_push($finalArray, ["initX2" => number_format(round(floatvaL($splittedLast[5]),6),5,'.',',')]);
 						array_push($finalArray, ["initX2d" => number_format(round(floatvaL($splittedLast[7]),6),5,'.',',')]);
+
+						 //LOG REQUEST START 
+
+	     				if($stmt = $con->prepare('INSERT INTO caslogs(commands_sent,error_flag,error_description) VALUES(?,?,?)')){
+	     					$commandsSent = "octave --no-gui --quiet octave_scripts/tlmenie.txt $r $initX1 $initX1d $initX2 $initX2d";
+	     					$errorFlag = 0;
+	     					$errorDesc = "";
+		     				$stmt->bind_param("sis",$commandsSent, $errorFlag, $errorDesc);
+		     				if($stmt->execute()){
+							}
+		     				else{
+		     					array_push($errorArray, ["error" => "cant log request (execute error - vlastny prikaz - $stmt->error)"]);
+	     					}
+	     				}
+	     				else{
+	     					array_push($errorArray, ["error" => "cant log request (prepare error - vlastny prikaz - $stmt->error)"]);
+	     				}
+
+	     								//LOG REQUEST STOP
      				}
      				else{
      					array_push($errorArray, ["error" => "not all inputs set (tlmenie)"]);
@@ -72,6 +92,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                                    if(floatval($_GET["input"]) >= 0 && floatval($initAlpha) >= 0 && floatval($initQ) >= 0 && floatval($initTheta) >= 0){
                                         $output = shell_exec("octave --no-gui --quiet octave_scripts/airplane.txt $r $initAlpha $initQ $initTheta");
                                         $output = preg_replace('!\s+!', ' ', $output);
+
+                                        $errorFlag = 0; //LOG 
+	     								$errorDesc = ""; //LOG
+
                                         $frontAndEndValues = explode("====KONIEC====", $output);
 
                                         $frontValues = explode(" ", $frontAndEndValues[0]);
@@ -101,7 +125,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                                         }
                                         else{
                                              array_push($errorArray, ["error" => "unexpected result from Octave"]);
+                                             $errorFlag = 1;
+                                             $errorDesc = "Unexpected result from octave";
                                         }
+
+                                        //LOG REQUEST START 
+
+	     								if($stmt = $con->prepare('INSERT INTO caslogs(commands_sent,error_flag,error_description) VALUES(?,?,?)')){
+	     									$commandsSent = "octave --no-gui --quiet octave_scripts/airplane.txt $r $initAlpha $initQ $initTheta";
+		     								$stmt->bind_param("sis",$commandsSent, $errorFlag, $errorDesc);
+		     								if($stmt->execute()){
+											}
+		     								else{
+		     									array_push($errorArray, ["error" => "cant log request (execute error - vlastny prikaz - $stmt->error)"]);
+	     									}
+	     								}
+	     								else{
+	     									array_push($errorArray, ["error" => "cant log request (prepare error - vlastny prikaz - $stmt->error)"]);
+	     								}
+
+	     								//LOG REQUEST STOP
                                    }
                                    else{
                                         array_push($errorArray, ["error" => "one of the inputs is not a valid input (lietadlo)"]);
@@ -155,6 +198,29 @@ else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
      	$commandToSend = 'octave --no-gui --persist --eval "'.$inputPrikaz.'"';
      	$out = exec($commandToSend);
      	array_push($dataArray, ["response" => $out]);
+
+     	//LOG REQUEST START
+     	$errorFlag = 0;
+     	$errorDesc = "";
+     	if(strlen($out)<1){
+     		$errorFlag = 1;
+     		$errorDesc = "Unexpected error occured while calling commands.";
+     	}
+
+     	if($stmt = $con->prepare('INSERT INTO caslogs(commands_sent,error_flag,error_description) VALUES(?,?,?)')){
+     		$stmt->bind_param("sis",$inputPrikaz, $errorFlag, $errorDesc);
+     		if($stmt->execute()){
+
+     		}
+     		else{
+     			array_push($errorArray, ["error" => "cant log request (execute error - vlastny prikaz - $stmt->error)"]);
+     		}
+     	}
+     	else{
+     		array_push($errorArray, ["error" => "cant log request (prepare error - vlastny prikaz - $stmt->error)"]);
+     	}
+
+     	//LOG REQUEST STOP
 
     }
 }
