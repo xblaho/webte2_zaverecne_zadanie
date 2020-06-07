@@ -7,6 +7,7 @@
   <?php
   	include 'includes/definitions.php';
   ?>
+  <link rel="stylesheet" type="text/css" href="css/blahoandras.css">
 </head>
 <body>
 	<header>
@@ -29,7 +30,7 @@
 				<form class="form">
 					<div class="form-row mt-3">
 						<div class="col-md-6">
-							<label for="novaPoziciaInput">Nový náklon lietadla</label>
+							<label for="novaPoziciaInput"><?php echo $lang["blahoandras_input_value_label"] ?></label>
 							<input type="number" step="0.000001" name="input" id="novaPoziciaInput" class="form-control">
 							<input type="number" step="0.000001" name="initAlpha" id="initAlphaInput" class="form-control" value="0" hidden>
 							<input type="number" step="0.000001" name="initQ" id="initQInput" class="form-control" value="0" hidden>
@@ -37,20 +38,34 @@
 						</div>
 						<div class="col-md-6">
 							<label for="novaPoziciaBtn" style="opacity:0;">Btn</label>
-							<button class="btn btn-primary btn-block" id="novaPoziciaBtn" type="button">Ukáž!</button>
+							<button class="btn btn-primary btn-block" id="novaPoziciaBtn" type="button"><?php echo $lang["blahoandras_button_label"] ?></button>
 						</div>
 					</div>
 				</form>
 			</div>
 		</div>
 		<div class="row">
+			<div class="col-md-2">
+				<label for="grafCheckbox" class="checkboxLabel"><?php echo $lang["blahoandras_checkbox_graf_label"] ?></label>
+			</div>
+			<div class="col-md-1">
+				<input type="checkbox" name="grafCheckbox" id="grafCheckbox" class="form-control" checked="checked">
+			</div>
+			<div class="col-md-2">
+				<label for="animCheckbox" class="checkboxLabel"><?php echo $lang["blahoandras_checkbox_animation_label"] ?></label>
+			</div>
+			<div class="col-md-1">
+				<input type="checkbox" name="animCheckbox" id="animCheckbox" class="form-control" checked="checked">
+			</div>
+		</div>
+		<div class="row" id="airplaneRowDiv">
 			<div class="col-10 offset-1 col-lg-8 offset-lg-2 div-wrapper d-flex justify-content-center align-items-center">
 				<canvas height="500" width="800" id="animCanvas"></canvas>
 				<img src="images/blahoandras_airplane.png" id="airplane" hidden>
 				<img src="images/blahoandras_airplane_winglet.png" id="airplaneWinglet" hidden>
 			</div>
 		</div>
-		<div class="row">
+		<div class="row" id="grafRowDiv">
 			<div class="col-md-6">
 				<div id="graf1"></div>
 			</div>
@@ -183,11 +198,11 @@
 
   		// INIT PLOTLY GRAPH START
   		var layoutGraf1 = {
-		  title:'Graf1Title'
+		  title:'<?php echo $lang["blahoandras_graf_1_label"] ?>'
 		};
 
 		var layoutGraf2 = {
-		  title:'Graf2Title'
+		  title:'<?php echo $lang["blahoandras_graf_2_label"] ?>'
 		};
 
 		var traceGraf1 = {
@@ -210,6 +225,26 @@
 		Plotly.newPlot('graf1', dataGraf1, layoutGraf1);
 		Plotly.newPlot('graf2', dataGraf2, layoutGraf2);
 		// INIT PLOTLY GRAPH STOP
+
+		//CHECKBOX FOR GRAPH AND ANIM START
+		$('#grafCheckbox').change(function() {
+	        if(this.checked) {
+	        	$('#grafRowDiv').removeClass("d-none");
+	        }
+	        else{
+				$('#grafRowDiv').addClass("d-none");
+	        }      
+	    });
+
+	    $('#animCheckbox').change(function() {
+	        if(this.checked) {
+	        	$('#airplaneRowDiv').removeClass("d-none");
+	        }
+	        else{
+				$('#airplaneRowDiv').addClass("d-none");
+	        }     
+	    });
+		//CHECKBOX FOR GRAPH AND ANIM STOP
 
 	});
 

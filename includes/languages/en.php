@@ -79,9 +79,14 @@ $lang["statistics_main_h1_text"] = 'Statistics';
 //-----------------------------------------
 
 //Szabóová Klaudia
-$lang["szaboovaklaudia_main_h1_text"] = 'Szabóová Klaudia - name of the task';
-$lang["szaboovaklaudia_example_1"] = 'Example 1';
-$lang["szaboovaklaudia_example_2"] = 'Example 2';
+$lang["szaboovaklaudia_main_h1_text"] = 'Szabóová Klaudia - car suspension';
+$lang["szaboovaklaudia_input"] = 'Height of the barrier';
+$lang["szaboovaklaudia_button"] = 'Calculate';
+$lang["szaboovaklaudia_check_1"] = 'Graph';
+$lang["szaboovaklaudia_check_2"] = 'Animation';
+$lang["szaboovaklaudia_error"] = 'The input range is from -0.3 to 0.3!';
+$lang["szaboovaklaudia_graf_label_1"] = 'Movement of the wheel';
+$lang["szaboovaklaudia_graf_label_2"] = 'Movement of the car';
 
 //Edi Gurmani
 $lang["edigurmani_main_h1_text"] = 'Edi Gurmani - name of the task';
@@ -94,8 +99,12 @@ $lang["datnguyenthe_example_1"] = 'Example 1';
 $lang["datnguyenthe_example_2"] = 'Example 2';
 
 //Blahó András
-$lang["blahoandras_main_h1_text"] = 'Blahó András - name of the task';
-$lang["blahoandras_example_1"] = 'Example 1';
-$lang["blahoandras_example_2"] = 'Example 2';
+$lang["blahoandras_main_h1_text"] = 'Blahó András - airplane';
+$lang["blahoandras_input_value_label"] = 'New pitch of the aircraft';
+$lang["blahoandras_button_label"] = 'Go!';
+$lang["blahoandras_checkbox_graf_label"] = 'View graph';
+$lang["blahoandras_checkbox_animation_label"] = 'View animation';
+$lang["blahoandras_graf_1_label"] = 'Pitch of the aircraft';
+$lang["blahoandras_graf_2_label"] = 'Pitch of the elevator';
 
 ?>
