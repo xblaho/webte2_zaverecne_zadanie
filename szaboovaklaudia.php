@@ -218,6 +218,17 @@
 
 		$("#vypocitat").click(function(e){
 			$("#wronginputdiv").addClass("d-none");
+
+			$.ajax({
+				type: 'POST',
+				url: 'logindividualtaskuse.php',
+				data:{
+					name: "Tlmič auta"
+				},
+				success: function(msg){
+				}
+			});
+
   			var input = $("#pozadovanavyska").val();
   			if(input > 0.3 || input < -0.3){
   				$("#wronginputdiv").removeClass("d-none");
