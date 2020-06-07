@@ -148,6 +148,16 @@
 
   			var input = $("#novaPoziciaInput").val();
 
+  			$.ajax({
+				type: 'POST',
+				url: 'logindividualtaskuse.php',
+				data:{
+					name: "Lietadlo"
+				},
+				success: function(msg){
+				}
+			});
+
   			if(input < 0 || input > 0.8){
   				alert("Zlý input! (input musí byť medzi 0 a 0.8");
   			}
