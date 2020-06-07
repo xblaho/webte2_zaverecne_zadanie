@@ -71,10 +71,9 @@ $lang["octavecommands_btn_text"] = 'Vypočítaj!';
 //*****************************************
 
 $lang["statistics_main_h1_text"] = 'Štatistika';
-
-
-
-
+$lang["statistics_table_header_1"] = 'Individuálna úloha';
+$lang["statistics_table_header_2"] = 'Používaná (kus)';
+$lang["statistics_button"] = 'Poslať štatistiku na email';
 
 //-----------------------------------------
 // !!!!! INDIVIDUAL TASKS START !!!!!

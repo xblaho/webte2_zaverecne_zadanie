@@ -71,10 +71,9 @@ $lang["octavecommands_btn_text"] = 'Calculate!';
 //*****************************************
 
 $lang["statistics_main_h1_text"] = 'Statistics';
-
-
-
-
+$lang["statistics_table_header_1"] = 'Individual task name';
+$lang["statistics_table_header_2"] = 'Used (times)';
+$lang["statistics_button"] = 'Send statistics to email';
 
 //-----------------------------------------
 // !!!!! INDIVIDUAL TASKS START !!!!!
