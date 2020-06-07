@@ -79,7 +79,7 @@ $lang["statistics_main_h1_text"] = 'Štatistika';
 //-----------------------------------------
 
 //Szabóová Klaudia
-$lang["szaboovaklaudia_main_h1_text"] = 'Szabóová Klaudia - tlmič kolesa';
+$lang["szaboovaklaudia_main_h1_text"] = 'Szabóová Klaudia - tlmič kolesa ';
 $lang["szaboovaklaudia_input"] = 'Požadovaná výška skokovej prekážky';
 $lang["szaboovaklaudia_button"] = 'Vypočítať';
 $lang["szaboovaklaudia_check_1"] = 'Graf';

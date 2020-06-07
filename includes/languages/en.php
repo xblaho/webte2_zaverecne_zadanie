@@ -79,7 +79,7 @@ $lang["statistics_main_h1_text"] = 'Statistics';
 //-----------------------------------------
 
 //Szabóová Klaudia
-$lang["szaboovaklaudia_main_h1_text"] = 'Szabóová Klaudia - car suspension';
+$lang["szaboovaklaudia_main_h1_text"] = 'Szabóová Klaudia - car suspension ';
 $lang["szaboovaklaudia_input"] = 'Height of the barrier';
 $lang["szaboovaklaudia_button"] = 'Calculate';
 $lang["szaboovaklaudia_check_1"] = 'Graph';
