@@ -117,12 +117,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
      			}
      			// LIETADLO STOP
 
-     			// VLASTNY START
-     			else if($_GET["type"] == "vlastny"){
-     				array_push($errorArray, ["vlastny" => "vlastny"]);
-     			}
-     			// VLASTNY STOP
-
      			//ERROR
      			else{
      				array_push($errorArray, ["error" => "bad type"]);
@@ -140,6 +134,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
      else{
      	array_push($errorArray, ["error" => "no api key or type set"]);
      }
+}
+// VLASTNY START
+else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+	if($_GET["type"] == "vlastny"){
+
+     	$inputPrikaz = "";
+
+     	if(!isset($_POST["input"])){
+     		array_push($errorArray, ["error" => "one of the inputs is empty (vlastny prikaz)"]);
+     	}
+     	else{
+   			if(empty($_POST["input"])){
+   				array_push($errorArray, ["error" => "not all inputs set (vlastny prikaz)"]);
+   			}
+   			else{
+   				$inputPrikaz = $_POST["input"];
+   			}
+     	}
+     	$commandToSend = 'octave --no-gui --persist --eval "'.$inputPrikaz.'"';
+     	$out = exec($commandToSend);
+     	array_push($dataArray, ["response" => $out]);
+
+    }
+}
+// VLASTNY STOP
+else{
+	array_push($errorArray, ["error" => "bad request method"]);
 }
 
 array_push($resultArray, ["data" => $dataArray]);
