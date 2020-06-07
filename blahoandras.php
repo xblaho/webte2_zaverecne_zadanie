@@ -147,52 +147,59 @@
   		$("#novaPoziciaBtn").click(function(e){
 
   			var input = $("#novaPoziciaInput").val();
-  			var initAlpha = $("#initAlphaInput").val();
-  			var initQ = $("#initQInput").val();
-  			var initTheta = $("#initThetaInput").val();
 
-  			$.ajax({
-			type: 'GET',
-			url: 'octave_api.php?apikey=ABC&type=lietadlo&input='+input+'&initAlpha='+initAlpha+'&initQ='+initQ+'&initTheta='+initTheta+'',
-			success: function(msg){
+  			if(input < 0 || input > 0.8){
+  				alert("Zlý input! (input musí byť medzi 0 a 0.8");
+  			}
+  			else{
 
-				const formatter = new Intl.NumberFormat('en-US', {
-				   minimumFractionDigits: 0,      
-				   maximumFractionDigits: 6,
+  				var initAlpha = $("#initAlphaInput").val();
+  				var initQ = $("#initQInput").val();
+  				var initTheta = $("#initThetaInput").val();
+  				
+  				$.ajax({
+				type: 'GET',
+				url: 'octave_api.php?apikey=ABC&type=lietadlo&input='+input+'&initAlpha='+initAlpha+'&initQ='+initQ+'&initTheta='+initTheta+'',
+				success: function(msg){
+
+					const formatter = new Intl.NumberFormat('en-US', {
+					   minimumFractionDigits: 0,      
+					   maximumFractionDigits: 6,
+					});
+
+					var newAlpha = formatter.format(parseFloat(msg[1].final[0].initAlpha));
+					var newQ = formatter.format(parseFloat(msg[1].final[1].initQ));
+					var newTheta = formatter.format(parseFloat(msg[1].final[2].initTheta));
+
+					if(newAlpha < 0){
+						newAlpha = newAlpha * -1;
+					}
+					if(newQ < 0){
+						newQ = newQ * -1;
+					}
+					if(newTheta <0){
+						newTheta = newTheta * -1;
+					}
+
+					$("#initAlphaInput").val(newAlpha);
+					$("#initQInput").val(newQ);
+					$("#initThetaInput").val(newTheta);
+					console.log($("#initAlphaInput").val());
+					console.log($("#initQInput").val());
+					console.log($("#initThetaInput").val());
+
+					for(var i =0; i< msg[0].data.length; i++){
+						(function(index) {
+		        			setTimeout(function() { 
+		        				var aktualnyNaklonLietadla = msg[0].data[index][0].naklon_lietadla;
+								var aktualnyNaklonZadnejKlapky = msg[0].data[index][1].naklon_zadnej_klapky;
+						    	extendGraphAndAnimate(aktualnyNaklonLietadla,aktualnyNaklonZadnejKlapky);
+		        			}, index*100);
+	    				})(i,msg);
+					}
+				}
 				});
-
-				var newAlpha = formatter.format(parseFloat(msg[1].final[0].initAlpha));
-				var newQ = formatter.format(parseFloat(msg[1].final[1].initQ));
-				var newTheta = formatter.format(parseFloat(msg[1].final[2].initTheta));
-
-				if(newAlpha < 0){
-					newAlpha = newAlpha * -1;
-				}
-				if(newQ < 0){
-					newQ = newQ * -1;
-				}
-				if(newTheta <0){
-					newTheta = newTheta * -1;
-				}
-
-				$("#initAlphaInput").val(newAlpha);
-				$("#initQInput").val(newQ);
-				$("#initThetaInput").val(newTheta);
-				console.log($("#initAlphaInput").val());
-				console.log($("#initQInput").val());
-				console.log($("#initThetaInput").val());
-
-				for(var i =0; i< msg[0].data.length; i++){
-					(function(index) {
-	        			setTimeout(function() { 
-	        				var aktualnyNaklonLietadla = msg[0].data[index][0].naklon_lietadla;
-							var aktualnyNaklonZadnejKlapky = msg[0].data[index][1].naklon_zadnej_klapky;
-					    	extendGraphAndAnimate(aktualnyNaklonLietadla,aktualnyNaklonZadnejKlapky);
-	        			}, index*100);
-    				})(i,msg);
-				}
-			}
-			});
+  			}
   		});
   		// NEW POSITION EVENT STOP
 
