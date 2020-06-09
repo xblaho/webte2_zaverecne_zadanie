@@ -1,6 +1,6 @@
 <?php
 
-header("Content-Type:application/json");
+//header("Content-Type:application/json");
 include 'includes/conn.php';
 
 $api_key = "ABC";
@@ -15,6 +15,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
      			// KYVADLO START
      			if($_GET["type"] == "kyvadlo"){
+
+     			    if(isset($_GET["input"]) && isset($_GET["initPozicia"]) && isset($_GET["initUhol"])){
+     			        $r = $_GET["input"];
+     			        $initPozicia = $_GET["initPozicia"];
+     			        $initUhol = $_GET["initUhol"];
+
+     			        $octaveOutput = shell_exec("octave --no-gui --quiet octave_scripts/kyvadlo.txt $r $initPozicia $initUhol");
+                        $octaveOutput = preg_replace('!\s+!', ' ', $octaveOutput); //remove line breaks (turn into one line)
+
+                        $outPut2Parts = explode("=END=", $octaveOutput); //array
+                        $valuePairsArray = explode(" ", trim($outPut2Parts[0]));
+                        $finalValuesArray = explode(" ", trim($outPut2Parts[1]));
+
+                        $array_of_pairs = array();
+                        while(sizeof($valuePairsArray) > 0){
+                            $data = ["pendulum_position" => $valuePairsArray[0], "pendulum_angle" => $valuePairsArray[1]];
+                            array_push($array_of_pairs, $data);
+
+                            array_shift($valuePairsArray); //shift twice to remove first 2 elements
+                            array_shift($valuePairsArray);
+                        }
+
+
+                        $finalPosition = $finalValuesArray[0];
+                        $finalAngle = $finalValuesArray[2];
+                        $array_of_final_values = ["finalPosition" => $finalPosition, "finalAngle" => $finalAngle];
+
+                        $dataArray = ["position and angle" => $array_of_pairs, "final position and angle" => $array_of_final_values];
+                    }
      				array_push($resultArray, ["kyvadlo" => "kyvadlo"]);
      			}
      			// KYVADLO STOP
@@ -91,12 +120,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                                    $initTheta = $_GET["initTheta"];
                                    if(floatval($_GET["input"]) >= 0 && floatval($initAlpha) >= 0 && floatval($initQ) >= 0 && floatval($initTheta) >= 0){
                                         $output = shell_exec("octave --no-gui --quiet octave_scripts/airplane.txt $r $initAlpha $initQ $initTheta");
+                                       echo "<pre>";
+                                       var_export($output);
+                                       echo "</pre>";
+
                                         $output = preg_replace('!\s+!', ' ', $output);
 
                                         $errorFlag = 0; //LOG 
 	     								$errorDesc = ""; //LOG
 
                                         $frontAndEndValues = explode("====KONIEC====", $output);
+
+                                        echo "<pre>";
+                                        var_export($output);
+                                        echo "</pre>";
 
                                         $frontValues = explode(" ", $frontAndEndValues[0]);
                                         array_shift($frontValues);
@@ -234,6 +271,5 @@ array_push($resultArray, ["final" => $finalArray]);
 array_push($resultArray, ["error" => $errorArray]);
 
 $resultJson =  json_encode($resultArray);
-echo $resultJson;
-
+//echo $resultJson;
 ?>

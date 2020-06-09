@@ -14,7 +14,7 @@
 			include 'includes/navbar.php';
 		?>
 	</header>
-    <h1> hello world! it's meeeeee, my first commiiiiit </h1>
+    <h1> hello world! it's meeeeee, m first commiiiiit </h1>
 
 	
 	<div class="container mt-4 mb-4 mainContainer">
