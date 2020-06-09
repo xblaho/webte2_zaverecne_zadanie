@@ -1,6 +1,6 @@
 <?php
 
-//header("Content-Type:application/json");
+header("Content-Type:application/json");
 include 'includes/conn.php';
 
 $api_key = "ABC";
@@ -272,7 +272,8 @@ array_push($resultArray, ["final" => $finalArray]);
 array_push($resultArray, ["error" => $errorArray]);
 
 $resultJson =  json_encode($resultArray);
-echo "<pre>";
 echo $resultJson;
-echo "</pre>";
+//echo "<pre>";
+//echo $resultJson;
+//echo "</pre>";
 ?>
