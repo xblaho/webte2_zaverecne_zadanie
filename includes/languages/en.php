@@ -28,7 +28,7 @@ $lang["navbar_statistics_button_text"] = 'Statistics';
 //*****************************************
 
 $lang["footer_main_h6_1"] = 'About';
-$lang["footer_about_text"] = 'We created this site as a "exam page" for the subject Web technologies 2';
+$lang["footer_about_text"] = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nisi risus, aliquet a tortor ac, convallis eleifend lacus. Nam sed hendrerit velit. Sed in tortor cursus, posuere arcu vel, sodales velit. Nam elit dui, pharetra at massa sit amet, ultricies finibus nunc. Cras elementum vestibulum dapibus. - EN';
 
 $lang["footer_main_h6_2"] = 'Menu';
 $lang["footer_index_button_text"] = 'Home';
@@ -49,64 +49,14 @@ $lang["footer_copyright_text"] = 'Web technologies 2 - FEI STU - 2020 summer sem
 //*****************************************
 
 $lang["index_main_h1_text"] = 'Home';
-$lang["index_main_h2_text"] = 'Welcome to our page!';
-$lang["index_main_p_text"] = 'We created this site as a "exam page" for the subject Web technologies 2. The task was to create a website for solving various tasks.';
-$lang["index_main_h2_tasks"] = 'Tasks';
-$lang["index_main_ul_li_1"] = 'Trying out a CAS (Computer Aided System)';
-$lang["index_main_ul_li_2"] = 'Various calculations and API for CAS';
-$lang["index_main_ul_li_3"] = 'API description';
-$lang["index_main_ul_li_4"] = 'Logging the sent commands';
-$lang["index_main_ul_li_5"] = 'Graphs and animations';
-$lang["index_main_ul_li_6"] = 'Statistics';
-$lang["index_main_ul_li_7"] = 'Exporting to formats CSV/PDF';
-
-$lang["index_main_h2_task_distribution"] = 'Task distribution';
-$lang["index_main_table_head_1"] = 'Task';
-$lang["index_main_table_head_2"] = 'Name';
-$lang["index_main_table_tr_1_td_1"] = 'API for CAS';
-$lang["index_main_table_tr_1_td_2"] = 'Blahó András';
-$lang["index_main_table_tr_2_td_1"] = 'Car suspension';
-$lang["index_main_table_tr_2_td_2"] = 'Klaudia Szabóová';
-$lang["index_main_table_tr_3_td_1"] = 'Aircraft pitch control';
-$lang["index_main_table_tr_3_td_2"] = 'Blahó András';
-$lang["index_main_table_tr_4_td_1"] = 'Inverted pendulum';
-$lang["index_main_table_tr_4_td_2"] = 'Dat NguyenThe';
-$lang["index_main_table_tr_5_td_1"] = 'Ball and beam';
-$lang["index_main_table_tr_5_td_2"] = 'Edi Gurmani';
-$lang["index_main_table_tr_6_td_1"] = 'CAS commands in form';
-$lang["index_main_table_tr_6_td_2"] = 'DatNguyen The, Edi Gurmani';
-$lang["index_main_table_tr_7_td_1"] = 'LOG, database';
-$lang["index_main_table_tr_7_td_2"] = 'Szabóová Klaudia';
-$lang["index_main_table_tr_8_td_1"] = 'E-mail';
-$lang["index_main_table_tr_8_td_2"] = 'Blahó András';
-$lang["index_main_table_tr_9_td_1"] = 'Exporting to formats CSV/PDF';
-$lang["index_main_table_tr_9_td_2"] = '';
+$lang["index_main_h2_text"] = 'Lorem ipsum - EN';
+$lang["index_main_p_text"] = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nisi risus, aliquet a tortor ac, convallis eleifend lacus. Nam sed hendrerit velit. Sed in tortor cursus, posuere arcu vel, sodales velit. Nam elit dui, pharetra at massa sit amet, ultricies finibus nunc. Cras elementum vestibulum dapibus. Nullam pharetra erat non aliquam suscipit. Nulla semper mauris at dolor pulvinar, non vulputate arcu dictum. Aliquam dapibus gravida suscipit. Duis ipsum lectus, sodales sit amet feugiat sit amet, interdum quis leo. Nulla luctus velit at blandit congue. Donec tristique, elit a semper porttitor, purus erat tincidunt metus, tincidunt molestie ex nulla in purus.';
 
 //*****************************************
 //APIDESCRIPTION.PHP
 //*****************************************
 
 $lang["apidescription_main_h1_text"] = 'API description';
-
-$lang["apidescription_main_h2_text"] = 'Description';
-$lang["apidescription_main_p_text"] = 'With the help of this API, Octave calculates the individual tasks for us. API checks if the API key is correct, and the needed input values are set. If no, then no calculation is executed. The response is coded in JSON with 3 arrays. First(data): includes all results from calculation, second (final): includes the final values for the next calculations, third(error): logs errors during execution.';
-
-$lang["apidescription_table_h2_text"] = 'Parameters';
-$lang["apidescription_table_head_1"] = 'GET parameters';
-$lang["apidescription_table_head_2"] = 'Values';
-$lang["apidescription_table_head_3"] = 'Description';
-$lang["apidescription_table_tr_1_td_1"] = 'apikey';
-$lang["apidescription_table_tr_1_td_2"] = 'ABC';
-$lang["apidescription_table_tr_1_td_3"] = 'If no apikey is present, or it is not the string "ABC", no calculations are executed';
-$lang["apidescription_table_tr_2_td_1"] = 'type';
-$lang["apidescription_table_tr_2_td_2"] = 'kyvadlo, tlmenie, tlmenie, gulicka';
-$lang["apidescription_table_tr_2_td_3"] = 'Type for individual tasks';
-$lang["apidescription_table_tr_3_td_1"] = 'input';
-$lang["apidescription_table_tr_3_td_2"] = 'double';
-$lang["apidescription_table_tr_3_td_3"] = 'Input value for calculations';
-$lang["apidescription_table_tr_4_td_1"] = 'init*';
-$lang["apidescription_table_tr_4_td_2"] = 'double';
-$lang["apidescription_table_tr_4_td_3"] = 'Optional, individual values for calculations';
 
 //*****************************************
 //OCTAVECOMMANDS.PHP
@@ -140,9 +90,13 @@ $lang["szaboovaklaudia_graf_label_1"] = 'Movement of the wheel';
 $lang["szaboovaklaudia_graf_label_2"] = 'Movement of the car';
 
 //Edi Gurmani
-$lang["edigurmani_main_h1_text"] = 'Edi Gurmani - name of the task';
-$lang["edigurmani_example_1"] = 'Example 1';
-$lang["edigurmani_example_2"] = 'Example 2';
+$lang["edigurmani_main_h1_text"] = 'Edi Gurmani - Ball and Beam';
+$lang["edigurmani_check_1"] = 'View graph';
+$lang["edigurmani_check_2"] = 'View animation';
+$lang["edigurmani_error"] = 'The input range is from 0 to 0.8!';
+$lang["edigurmani_button"] = 'Calculate';
+
+
 
 //Dat NguyenThe
 $lang["datnguyenthe_main_h1_text"] = 'Dat NguyenThe - name of the task';

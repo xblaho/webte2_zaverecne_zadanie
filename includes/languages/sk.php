@@ -28,7 +28,7 @@ $lang["navbar_statistics_button_text"] = 'Štatistika';
 //*****************************************
 
 $lang["footer_main_h6_1"] = 'O stránke';
-$lang["footer_about_text"] = 'Táto stránka bola vytvorená ako záverečný projekt pre predmet Webové technológie 2';
+$lang["footer_about_text"] = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nisi risus, aliquet a tortor ac, convallis eleifend lacus. Nam sed hendrerit velit. Sed in tortor cursus, posuere arcu vel, sodales velit. Nam elit dui, pharetra at massa sit amet, ultricies finibus nunc. Cras elementum vestibulum dapibus. - SK';
 
 $lang["footer_main_h6_2"] = 'Menu';
 $lang["footer_index_button_text"] = 'Hlavná stránka';
@@ -49,65 +49,14 @@ $lang["footer_copyright_text"] = 'Webové technológie 2 - FEI STU - 2020 letný
 //*****************************************
 
 $lang["index_main_h1_text"] = 'Hlavná stránka';
-$lang["index_main_h2_text"] = 'Vitajte na našej stránke!';
-$lang["index_main_p_text"] = 'Táto stránka bola vytvorená ako záverečný projekt pre predmet Webové technológie 2. Úlohou bola, aby sme si vytvorili webstránku pre rôzne úlohy.';
-
-$lang["index_main_h2_tasks"] = 'Úlohy';
-$lang["index_main_ul_li_1"] = 'Vyskúšať prácu s CAS (Computer Aided System)';
-$lang["index_main_ul_li_2"] = 'Rôzne výpočty pomocou CAS a API k tomu';
-$lang["index_main_ul_li_3"] = 'Popis API';
-$lang["index_main_ul_li_4"] = 'Logovanie odoslaných príkazov';
-$lang["index_main_ul_li_5"] = 'Grafy a animácie';
-$lang["index_main_ul_li_6"] = 'Štatistiky';
-$lang["index_main_ul_li_7"] = 'Export do CSV/PDF';
-
-$lang["index_main_h2_task_distribution"] = 'Rozdelenie úloh';
-$lang["index_main_table_head_1"] = 'Úloha';
-$lang["index_main_table_head_2"] = 'Meno';
-$lang["index_main_table_tr_1_td_1"] = 'API pre CAS';
-$lang["index_main_table_tr_1_td_2"] = 'Blahó András';
-$lang["index_main_table_tr_2_td_1"] = 'Tlmič auta';
-$lang["index_main_table_tr_2_td_2"] = 'Klaudia Szabóová';
-$lang["index_main_table_tr_3_td_1"] = 'Náklon lietadla';
-$lang["index_main_table_tr_3_td_2"] = 'Blahó András';
-$lang["index_main_table_tr_4_td_1"] = 'Inverzné kývadlo';
-$lang["index_main_table_tr_4_td_2"] = 'Dat NguyenThe';
-$lang["index_main_table_tr_5_td_1"] = 'Gulička na tyči';
-$lang["index_main_table_tr_5_td_2"] = 'Edi Gurmani';
-$lang["index_main_table_tr_6_td_1"] = 'CAS príkazy pri formuláry';
-$lang["index_main_table_tr_6_td_2"] = 'DatNguyen The, Edi Gurmani';
-$lang["index_main_table_tr_7_td_1"] = 'LOG, databáza';
-$lang["index_main_table_tr_7_td_2"] = 'Szabóová Klaudia';
-$lang["index_main_table_tr_8_td_1"] = 'E-mail';
-$lang["index_main_table_tr_8_td_2"] = 'Blahó András';
-$lang["index_main_table_tr_9_td_1"] = 'Export CSV/PDF';
-$lang["index_main_table_tr_9_td_2"] = '';
+$lang["index_main_h2_text"] = 'Lorem ipsum - SK';
+$lang["index_main_p_text"] = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nisi risus, aliquet a tortor ac, convallis eleifend lacus. Nam sed hendrerit velit. Sed in tortor cursus, posuere arcu vel, sodales velit. Nam elit dui, pharetra at massa sit amet, ultricies finibus nunc. Cras elementum vestibulum dapibus. Nullam pharetra erat non aliquam suscipit. Nulla semper mauris at dolor pulvinar, non vulputate arcu dictum. Aliquam dapibus gravida suscipit. Duis ipsum lectus, sodales sit amet feugiat sit amet, interdum quis leo. Nulla luctus velit at blandit congue. Donec tristique, elit a semper porttitor, purus erat tincidunt metus, tincidunt molestie ex nulla in purus.';
 
 //*****************************************
 //APIDESCRIPTION.PHP
 //*****************************************
 
 $lang["apidescription_main_h1_text"] = 'Popis API';
-
-$lang["apidescription_main_h2_text"] = 'Popis';
-$lang["apidescription_main_p_text"] = 'Pomocou API môžme požiadať Octave, aby vypočítal príklady pre naše účely, taktiež môže vypočítať individuálne príkazy zadané používateľom. API skontroluje, či API key je správny, a tiež, aby všetky potrebné input hodnoty sú zadané. Ak nie, výpočet nevykoná. Odpoveď pozostáva z troch zoznamov, vo formáte JSON. Prvý (data): obsahuje výsledky výpočtu pre úlohy, druhý (final): obsahuje finálne výsledky pre ďalší výpočet, tretí(error): obsahuje chyby pri vykonaní.';
-
-$lang["apidescription_table_h2_text"] = 'Parametre';
-$lang["apidescription_table_head_1"] = 'GET parameter';
-$lang["apidescription_table_head_2"] = 'Hodnoty';
-$lang["apidescription_table_head_3"] = 'Popis';
-$lang["apidescription_table_tr_1_td_1"] = 'apikey';
-$lang["apidescription_table_tr_1_td_2"] = 'ABC';
-$lang["apidescription_table_tr_1_td_3"] = 'Keď používateľ pridá iný key, ako "ABC", API nefunguje';
-$lang["apidescription_table_tr_2_td_1"] = 'type';
-$lang["apidescription_table_tr_2_td_2"] = 'kyvadlo, tlmenie, tlmenie, gulicka';
-$lang["apidescription_table_tr_2_td_3"] = 'Typ výpočtu pre individuálne úlohy';
-$lang["apidescription_table_tr_3_td_1"] = 'input';
-$lang["apidescription_table_tr_3_td_2"] = 'double';
-$lang["apidescription_table_tr_3_td_3"] = 'Input hodnota pre výpočty';
-$lang["apidescription_table_tr_4_td_1"] = 'init*';
-$lang["apidescription_table_tr_4_td_2"] = 'double';
-$lang["apidescription_table_tr_4_td_3"] = 'Rôzne, opcionálne hodnoty pre individuálne úlohy';
 
 //*****************************************
 //OCTAVECOMMANDS.PHP
@@ -141,18 +90,19 @@ $lang["szaboovaklaudia_graf_label_1"] = 'Poloha kolesa';
 $lang["szaboovaklaudia_graf_label_2"] = 'Poloha vozidla';
 
 //Edi Gurmani
-$lang["edigurmani_main_h1_text"] = 'Edi Gurmani - názov úlohy';
-$lang["edigurmani_example_1"] = 'Example 1';
-$lang["edigurmani_example_2"] = 'Example 2';
+$lang["edigurmani_main_h1_text"] = 'Edi Gurmani - Gulicka';
+$lang["edigurmani_check_1"] = 'Ukaz graf';
+$lang["edigurmani_check_2"] = 'Ukaz animaciu';
+$lang["edigurmani_error"] = 'Hodnota musi byt medzi 0 a 0.8!';
+$lang["edigurmani_button"] = 'Vypocitaj';
+$lang["edigurmani_graf_1_label"] = 'Náklon gulicku';
+$lang["edigurmani_graf_2_label"] = 'Naklon gulicku';
+
 
 //Dat NguyenThe
 $lang["datnguyenthe_main_h1_text"] = 'Dat NguyenThe - názov úlohy';
 $lang["datnguyenthe_example_1"] = 'Example 1';
 $lang["datnguyenthe_example_2"] = 'Example 2';
-$lang['datnguyenthe_input_placeholder'] = 'požadovaná nová poloha kyvadla';
-$lang["datnguyenthe_submit_button"] = 'Spusti';
-$lang["datnguyenthe_graph_trace1"] = 'pozicia_kyvadla';
-$lang["datnguyenthe_graph_trace2"] = 'uhol_kyvadla';
 
 //Blahó András
 $lang["blahoandras_main_h1_text"] = 'Blahó András - lietadlo';
