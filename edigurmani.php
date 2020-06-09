@@ -16,7 +16,7 @@
 	</header>
 
 
-	
+	<h1>EDI GURMANI</h1>
 	<div class="container mt-4 mb-4 mainContainer">
 		<div class="row">
 			<div class="col">
