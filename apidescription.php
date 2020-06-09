@@ -26,16 +26,44 @@
 		</div>
 		<div class="row">
 			<div class="col-md-12">
-				<h2 class="display-5"><?php echo $lang["index_main_h2_text"] ?></h2>
-				<p><?php echo $lang["index_main_p_text"] ?></p>
+				<h2 class="display-5"><?php echo $lang["apidescription_main_h2_text"] ?></h2>
+				<p><?php echo $lang["apidescription_main_p_text"] ?></p>
 			</div>
 			<div class="col-md-12">
-				<h2 class="display-5"><?php echo $lang["index_main_h2_text"] ?></h2>
-				<p><?php echo $lang["index_main_p_text"] ?></p>
+				<h2 class="display-5"><?php echo $lang["apidescription_table_h2_text"] ?></h2>
 			</div>
 			<div class="col-md-12">
-				<h2 class="display-5"><?php echo $lang["index_main_h2_text"] ?></h2>
-				<p><?php echo $lang["index_main_p_text"] ?></p>
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th><?php echo $lang["apidescription_table_head_1"] ?></th>
+							<th><?php echo $lang["apidescription_table_head_2"] ?></th>
+							<th><?php echo $lang["apidescription_table_head_3"] ?></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><?php echo $lang["apidescription_table_tr_1_td_1"] ?></td>
+							<td><?php echo $lang["apidescription_table_tr_1_td_2"] ?></td>
+							<td><?php echo $lang["apidescription_table_tr_1_td_3"] ?></td>
+						</tr>
+						<tr>
+							<td><?php echo $lang["apidescription_table_tr_2_td_1"] ?></td>
+							<td><?php echo $lang["apidescription_table_tr_2_td_2"] ?></td>
+							<td><?php echo $lang["apidescription_table_tr_2_td_3"] ?></td>
+						</tr>
+						<tr>
+							<td><?php echo $lang["apidescription_table_tr_3_td_1"] ?></td>
+							<td><?php echo $lang["apidescription_table_tr_3_td_2"] ?></td>
+							<td><?php echo $lang["apidescription_table_tr_3_td_3"] ?></td>
+						</tr>
+						<tr>
+							<td><?php echo $lang["apidescription_table_tr_4_td_1"] ?></td>
+							<td><?php echo $lang["apidescription_table_tr_4_td_2"] ?></td>
+							<td><?php echo $lang["apidescription_table_tr_4_td_3"] ?></td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 		</div>	
 	</div>	

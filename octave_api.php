@@ -15,8 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
      			// KYVADLO START
      			if($_GET["type"] == "kyvadlo"){
-
-     			    if(isset($_GET["input"]) && isset($_GET["initPozicia"]) && isset($_GET["initUhol"])){
+     				if(isset($_GET["input"]) && isset($_GET["initPozicia"]) && isset($_GET["initUhol"])){
      			        $r = $_GET["input"];
      			        $initPozicia = $_GET["initPozicia"];
      			        $initUhol = $_GET["initUhol"];
@@ -44,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                         //LOG REQUEST START
 
                         if($stmt = $con->prepare('INSERT INTO caslogs(commands_sent,error_flag,error_description) VALUES(?,?,?)')){
-                            $commandsSent = "octave --no-gui --quiet octave_scripts/tlmenie.txt $r $initPozicia $initUhol";
+                            $commandsSent = "octave --no-gui --quiet octave_scripts/gulicka.txt $r $initPozicia $initUhol";
                             $errorFlag = 0;
                             $errorDesc = "";
                             $stmt->bind_param("sis",$commandsSent, $errorFlag, $errorDesc);
@@ -57,13 +56,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                         else{
                             array_push($errorArray, ["error" => "database error: cant log request (prepare error - vlastny prikaz - $stmt->error)"]);
                         }
-
-                        //LOG REQUEST STOP
-                    }
-                    else{
-                        array_push($errorArray, ["error" => "Error: undefined input variable. Set all initial variables."]);
-                    }
-//     				array_push($resultArray, ["kyvadlo" => "kyvadlo"]);
      			}
      			// KYVADLO STOP
 
@@ -139,10 +131,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                                    $initTheta = $_GET["initTheta"];
                                    if(floatval($_GET["input"]) >= 0 && floatval($initAlpha) >= 0 && floatval($initQ) >= 0 && floatval($initTheta) >= 0){
                                         $output = shell_exec("octave --no-gui --quiet octave_scripts/airplane.txt $r $initAlpha $initQ $initTheta");
-                                       echo "<pre>";
-                                       var_export($output);
-                                       echo "</pre>";
-
                                         $output = preg_replace('!\s+!', ' ', $output);
 
                                         $errorFlag = 0; //LOG 
@@ -287,7 +275,5 @@ array_push($resultArray, ["error" => $errorArray]);
 
 $resultJson =  json_encode($resultArray);
 echo $resultJson;
-//echo "<pre>";
-//echo $resultJson;
-//echo "</pre>";
+
 ?>
