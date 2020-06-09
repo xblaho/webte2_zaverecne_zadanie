@@ -28,23 +28,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                         $valuePairsArray = explode(" ", trim($outPut2Parts[0]));
                         $finalValuesArray = explode(" ", trim($outPut2Parts[1]));
 
-                        $array_of_pairs = array();
+                        $dataArray = array();
                         while(sizeof($valuePairsArray) > 0){
                             $data = ["pendulum_position" => $valuePairsArray[0], "pendulum_angle" => $valuePairsArray[1]];
-                            array_push($array_of_pairs, $data);
+                            array_push($dataArray, $data);
 
                             array_shift($valuePairsArray); //shift twice to remove first 2 elements
                             array_shift($valuePairsArray);
                         }
 
-
                         $finalPosition = $finalValuesArray[0];
                         $finalAngle = $finalValuesArray[2];
-                        $array_of_final_values = ["finalPosition" => $finalPosition, "finalAngle" => $finalAngle];
+                        $finalArray = ["finalPosition" => $finalPosition, "finalAngle" => $finalAngle];
 
-                        $dataArray = ["position and angle" => $array_of_pairs, "final position and angle" => $array_of_final_values];
+//                        echo "<pre>";
+//                        var_export($dataArray);
+//                        var_export($finalArray);
+//                        echo "</pre>";
                     }
-     				array_push($resultArray, ["kyvadlo" => "kyvadlo"]);
+                    else{
+                        array_push($errorArray, ["error" => "Error: undefined input variable. Set all initial variables."]);
+                    }
+//     				array_push($resultArray, ["kyvadlo" => "kyvadlo"]);
      			}
      			// KYVADLO STOP
 
@@ -130,10 +135,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 	     								$errorDesc = ""; //LOG
 
                                         $frontAndEndValues = explode("====KONIEC====", $output);
-
-                                        echo "<pre>";
-                                        var_export($output);
-                                        echo "</pre>";
 
                                         $frontValues = explode(" ", $frontAndEndValues[0]);
                                         array_shift($frontValues);
@@ -271,5 +272,7 @@ array_push($resultArray, ["final" => $finalArray]);
 array_push($resultArray, ["error" => $errorArray]);
 
 $resultJson =  json_encode($resultArray);
-//echo $resultJson;
+echo "<pre>";
+echo $resultJson;
+echo "</pre>";
 ?>
