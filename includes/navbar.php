@@ -1,7 +1,7 @@
 <?php
 
 	echo '<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-info p-2">
-  <a class="navbar-brand" href="#">Webte2 final</a>
+  <a class="navbar-brand" href="index.php">Webte2 final</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
