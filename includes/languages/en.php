@@ -99,10 +99,16 @@ $lang["edigurmani_button"] = 'Calculate';
 
 
 //Dat NguyenThe
-$lang["datnguyenthe_main_h1_text"] = 'Dat NguyenThe - name of the task';
+$lang["datnguyenthe_main_h1_text"] = 'Bao Dat Nguyen The - Inverted pendulum';
 $lang["datnguyenthe_example_1"] = 'Example 1';
 $lang["datnguyenthe_example_2"] = 'Example 2';
-
+$lang['datnguyenthe_input_placeholder'] = 'new pendulum position';
+$lang["datnguyenthe_submit_button"] = 'Run';
+$lang["datnguyenthe_checkbox_graph"] = 'graph';
+$lang["datnguyenthe_checkbox_animation"] = 'animation';
+$lang["datnguyenthe_graph_trace1"] = 'pendulum position';
+$lang["datnguyenthe_graph_trace2"] = 'pendulum angle';
+$lang["datnguyenthe_error_invalid_input"] = 'Invalid value. Only values between -5 and 5 allowed.';
 //Blahó András
 $lang["blahoandras_main_h1_text"] = 'Blahó András - airplane';
 $lang["blahoandras_input_value_label"] = 'New pitch of the aircraft';

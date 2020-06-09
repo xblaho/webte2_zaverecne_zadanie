@@ -86,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                 // KYVADLO STOP
 
                 // GULICKA START
-                if($_GET["type"] == "gulicka") {
+                else if($_GET["type"] == "gulicka") {
 
                     if (isset($_GET["input"]) && isset($_GET["initRychlost"]) && isset($_GET["initZrychlenie"])) {
                         $r = $_GET["input"];
@@ -102,15 +102,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
                         $dataArray = array();
                         while (sizeof($valuePairsArray) > 0) {
-                            $data = ["pendulum_position" => $valuePairsArray[0], "pendulum_angle" => $valuePairsArray[1]];
+                            $data = ["ball_position" => $valuePairsArray[0], "bar_angle" => $valuePairsArray[1]];
                             array_push($dataArray, $data);
 
-                            array_shift($valuePairsArray); //shift twice to remove first 2 elements
+                            array_shift($valuePairsArray);
                             array_shift($valuePairsArray);
                         }
 
-                        $finalPosition = $finalValuesArray[0];
-                        $finalAngle = $finalValuesArray[2];
+                        $finalPosition = $dataArray[sizeof($dataArray) - 1]["ball_position"];
+                        $finalAngle = $dataArray[sizeof($dataArray) - 1]["bar_angle"];
                         $finalArray = ["finalPosition" => $finalPosition, "finalAngle" => $finalAngle];
 
                         //LOG REQUEST START
@@ -132,12 +132,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                     } else {
                         array_push($errorArray, ["error" => "Error: undefined input variable. Set all initial variables."]);
                     }
-                }
-//     				array_push($resultArray, ["gulicka" => "gulicka"]);
-
-
-                else if($_GET["type"] == "gulicka"){
-                    array_push($resultArray, ["gulicka" => "gulicka"]);
                 }
                 //GULICKA STOP
 

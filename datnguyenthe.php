@@ -14,30 +14,6 @@
 			include 'includes/navbar.php';
 		?>
 	</header>
-	
-<!--	<div class="container mt-4 mb-4 mainContainer">-->
-<!--		<div class="row">-->
-<!--			<div class="col">-->
-<!--				<h1 class="mt-1 text-center">--><?php //echo $lang["datnguyenthe_main_h1_text"] ?><!--</h1>-->
-<!--				<hr>-->
-<!--			</div>-->
-<!--		</div>-->
-<!--		<div class="row">-->
-<!--			<div class="col-md-12">-->
-<!--				<h2 class="display-5">--><?php //echo $lang["index_main_h2_text"] ?><!--</h2>-->
-<!--				<p>--><?php //echo $lang["index_main_p_text"] ?><!--</p>-->
-<!--			</div>-->
-<!--			<div class="col-md-12">-->
-<!--				<h2 class="display-5">--><?php //echo $lang["index_main_h2_text"] ?><!--</h2>-->
-<!--				<p>--><?php //echo $lang["index_main_p_text"] ?><!--</p>-->
-<!--			</div>-->
-<!--			<div class="col-md-12">-->
-<!--				<h2 class="display-5">--><?php //echo $lang["index_main_h2_text"] ?><!--</h2>-->
-<!--				<p>--><?php //echo $lang["index_main_p_text"] ?><!--</p>-->
-<!--			</div>-->
-<!--		</div>	-->
-<!--	</div>	-->
-
 
     <div class="container mt-4 mb-4 mainContainer">
         <div class="row">
@@ -51,7 +27,7 @@
                 <form class="form">
                     <div class="form-row">
                         <div class="col-md-4">
-                            <input type="number" id="user_input" placeholder="<?php echo $lang['datnguyenthe_input_placeholder'] = 'požadovaná nová poloha kyvadla'; ?>" class="form-control">
+                            <input type="number" step='0.2' id="user_input" placeholder="<?php echo $lang['datnguyenthe_input_placeholder'] = 'požadovaná nová poloha kyvadla'; ?>" class="form-control">
                         </div>
                         <div class="col-md-3">
                             <button class="btn btn-dark" id="submit" type="button"><?php echo $lang["datnguyenthe_submit_button"]; ?></button>
@@ -72,7 +48,7 @@
         </div>
         <div class="row" id="error_invalid_input" style="display: none">
             <div class="col">
-                <p class="text-danger display-4 text-center"><?php echo $lang["datnguyenthe_error_invalid_input"] ?></p>
+                <p class="text-danger text-center"><?php echo $lang["datnguyenthe_error_invalid_input"] ?></p>
             </div>
         </div>
         <div class="row">
@@ -85,11 +61,11 @@
                 <canvas id="canvas" width="500" height="500" style="border: 1px solid black"></canvas>
             </div>
         </div>
-        <div class="row d-none">
-            <img src="images/szaboovaklaudia_car.png" id="auto">
-            <img src="images/szaboovaklaudia_car_front_wheel.png" id="kolesopredny">
-            <img src="images/szaboovaklaudia_car_rear_wheel.png" id="kolesozadny">
-        </div>
+    </div>
+
+    <div class="d-none">
+        <img src="images/nguyen_cart.png" id="cart">
+        <img src="images/nguyen_pendulum.png" id="pendulum">
     </div>
     <?php
     include 'includes/footer.php';
@@ -162,10 +138,9 @@
                                 setTimeout(function() {
                                     var position = msg[0].data[index].pendulum_position;
                                     var angle = msg[0].data[index].pendulum_angle;
-                                    console.log(position + " | " + angle);
                                     updateGraph(position,angle);
-                                    // animate(x1,x3);
-                                }, 1000);
+                                    updateCanvas(position, angle);
+                                }, 500);
                             })(i);
                         }
                     }
@@ -215,29 +190,70 @@
 
         /*============Animation on canvas================*/
         var canvas = new fabric.Canvas('canvas');
-        // create a rectangle object
-        var rect = new fabric.Rect({
-            left: 100,
-            top: 100,
-            fill: 'red',
-            width: 20,
-            height: 20
-        });
-        var line = new fabric.Line({
-            x1: 50,
-            y1: 50,
-            x2: 200,
-            y2: 200
-        });
 
-        // "add" rectangle onto canvas
-        canvas.add(rect);
-        canvas.add(line);
+        var cartDOMElement = document.getElementById('cart');
+        var pendulumDOMElement = document.getElementById('pendulum');
 
-        rect.set('fill', 'red');
-        line.set('fill', 'blue');
-        rect.set({ strokeWidth: 5, stroke: 'rgba(100,200,200,0.5)' });
-        rect.set('angle', 15).set('flipY', true);
+        var cartLeft = 110;
+        var cartTop = 100;
+
+        var pendulumLeft = 150;
+        var pendulumTop = 80;
+
+        var cart = new fabric.Image(cartDOMElement,{
+            left: cartLeft,
+            top: cartTop,
+        });
+        cart.scale(0.3);
+
+        var pendulum = new fabric.Image(pendulumDOMElement,{
+            left: pendulumLeft,
+            top: pendulumTop,
+        });
+        pendulum.scale(0.3);
+
+        var inverted_pendulum_group = new fabric.Group([cart, pendulum], {} );
+        canvas.add(inverted_pendulum_group);
+
+
+
+        function updateCanvas(position, angle){
+
+            var newPositionLeft = cartLeft + (position * 20);
+            var newAngle = angle * (180/Math.PI);
+
+            // var toAnimateX1 = 0;
+            // var toAnimateX3 = 0;
+            //
+            // var animaciaSizeKonstanta = 1000;
+            //
+            // var valX1 = lastX1 - x1;
+            // var valX3 = lastX3 - x3;
+            //
+            // if(valX1 < 0){
+            //     var val = -1*valX1*animaciaSizeKonstanta;
+            //     toAnimateX1 = "+="+val;
+            // }
+            // else{
+            //     var val = valX1*animaciaSizeKonstanta;
+            //     toAnimateX1 = "-="+val;
+            // }
+            //
+            // if(valX3 < 0){
+            //     var val = -1*valX3*animaciaSizeKonstanta;
+            //     toAnimateX3 = "+="+val;
+            // }
+            // else{
+            //     var val = valX3*animaciaSizeKonstanta;
+            //     toAnimateX3 = "-="+val;
+            // }
+
+
+            inverted_pendulum_group.animate('left', newPositionLeft, { onChange: canvas.renderAll.bind(canvas) });
+            pendulum.animate('angle', newAngle, { onChange: canvas.renderAll.bind(canvas) });
+            // lastX1 = x1;
+            // lastX3 = x3;
+        }
 
     </script>
 		

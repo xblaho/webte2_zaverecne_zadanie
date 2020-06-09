@@ -150,7 +150,7 @@ $lang["edigurmani_graf_1_label"] = 'Náklon gulicku';
 $lang["edigurmani_graf_2_label"] = 'Naklon gulicku';
 
 //Dat NguyenThe
-$lang["datnguyenthe_main_h1_text"] = 'Dat NguyenThe - názov úlohy';
+$lang["datnguyenthe_main_h1_text"] = 'Bao Dat Nguyen The - obrátené kyvadlo';
 $lang["datnguyenthe_example_1"] = 'Example 1';
 $lang["datnguyenthe_example_2"] = 'Example 2';
 $lang['datnguyenthe_input_placeholder'] = 'požadovaná nová poloha kyvadla';

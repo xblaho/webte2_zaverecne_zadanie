@@ -24,7 +24,7 @@ t = 0:0.01:5;
 [y,t,x]=lsim(N*sys,r*ones(size(t)),t,[initRychlost;0;initZrychlenie;0]);
 
 fixed_point_format(true);
-#format long;
+format long;
 disp([N*x(:,1), x(:,3)]),disp("=END="),disp(x(size(x,1),:));
 
 
