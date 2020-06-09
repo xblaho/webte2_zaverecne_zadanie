@@ -149,6 +149,10 @@ $lang["edigurmani_example_2"] = 'Example 2';
 $lang["datnguyenthe_main_h1_text"] = 'Dat NguyenThe - názov úlohy';
 $lang["datnguyenthe_example_1"] = 'Example 1';
 $lang["datnguyenthe_example_2"] = 'Example 2';
+$lang['datnguyenthe_input_placeholder'] = 'požadovaná nová poloha kyvadla';
+$lang["datnguyenthe_submit_button"] = 'Spusti';
+$lang["datnguyenthe_graph_trace1"] = 'pozicia_kyvadla';
+$lang["datnguyenthe_graph_trace2"] = 'uhol_kyvadla';
 
 //Blahó András
 $lang["blahoandras_main_h1_text"] = 'Blahó András - lietadlo';
