@@ -41,10 +41,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                         $finalAngle = $finalValuesArray[2];
                         $finalArray = ["finalPosition" => $finalPosition, "finalAngle" => $finalAngle];
 
-//                        echo "<pre>";
-//                        var_export($dataArray);
-//                        var_export($finalArray);
-//                        echo "</pre>";
+                        //LOG REQUEST START
+
+                        if($stmt = $con->prepare('INSERT INTO caslogs(commands_sent,error_flag,error_description) VALUES(?,?,?)')){
+                            $commandsSent = "octave --no-gui --quiet octave_scripts/tlmenie.txt $r $initPozicia $initUhol";
+                            $errorFlag = 0;
+                            $errorDesc = "";
+                            $stmt->bind_param("sis",$commandsSent, $errorFlag, $errorDesc);
+                            if($stmt->execute()){
+                            }
+                            else{
+                                array_push($errorArray, ["error" => "database error: cant log request (execute error - vlastny prikaz - $stmt->error)"]);
+                            }
+                        }
+                        else{
+                            array_push($errorArray, ["error" => "database error: cant log request (prepare error - vlastny prikaz - $stmt->error)"]);
+                        }
+
+                        //LOG REQUEST STOP
                     }
                     else{
                         array_push($errorArray, ["error" => "Error: undefined input variable. Set all initial variables."]);
